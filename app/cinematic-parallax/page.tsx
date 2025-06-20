@@ -148,7 +148,7 @@ function CinematicSection({
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const textTransform = scrollY.to((y: number) => {
-    const progress = (y - sectionTop) / window.innerHeight;
+    const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1);
 
     if (isMobile) {
       // Mobile: slide text vertically with fade-in
@@ -169,13 +169,13 @@ function CinematicSection({
       <animated.div
         style={{
           transform: scrollY.to((y: number) => {
-            const progress = (y - sectionTop) / window.innerHeight;
+            const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1);
             const scale = 1 + Math.abs(progress) * 0.2;
             const translateY = progress * 150;
             return `translateY(${translateY}px) scale(${scale})`;
           }),
           opacity: scrollY.to((y: number) => {
-            const progress = Math.abs((y - sectionTop) / window.innerHeight);
+            const progress = Math.abs((y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1));
             return Math.max(0.1, 1 - progress * 0.5);
           }),
         }}
@@ -211,7 +211,7 @@ function CinematicSection({
           <animated.div
             style={{
               transform: scrollY.to((y: number) => {
-                const progress = (y - sectionTop) / window.innerHeight;
+                const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1);
                 const translateY = progress * 50;
                 return `translateY(${translateY}px)`;
               }),
@@ -222,7 +222,7 @@ function CinematicSection({
               <animated.div
                 style={{
                   transform: scrollY.to((y: number) => {
-                    const progress = (y - sectionTop) / window.innerHeight;
+                    const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1);
                     // Start zoomed in (1.2x), zoom out to normal (1x) as it comes into view
                     const scale = 1.2 - Math.abs(progress) * 0.2;
                     return `scale(${Math.max(scale, 1)})`;

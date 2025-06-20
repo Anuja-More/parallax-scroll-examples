@@ -146,7 +146,7 @@ export default function LuxuryParallaxGallery() {
             <animated.div
               style={{
                 height: scrollY.to((y) => {
-                  const progress = y / (window.innerHeight * luxuryGalleryData.length)
+                  const progress = y / ((typeof window !== "undefined" ? window.innerHeight : 1) * luxuryGalleryData.length)
                   return `${Math.min(progress * 100, 100)}%`
                 }),
               }}
@@ -213,7 +213,7 @@ function LuxurySection({
             <animated.div
               style={{
                 transform: scrollY.to((y: number) => {
-                  const progress = (y - sectionTop) / window.innerHeight
+                  const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1)
                   return `translateY(${progress * 15}px)`
                 }),
               }}

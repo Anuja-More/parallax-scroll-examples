@@ -229,7 +229,7 @@ function PremiumSection({
             <animated.div
               style={{
                 transform: scrollY.to((y: number) => {
-                  const progress = (y - sectionTop) / window.innerHeight
+                  const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1)
                   return `translateY(${progress * 20}px)`
                 }),
               }}

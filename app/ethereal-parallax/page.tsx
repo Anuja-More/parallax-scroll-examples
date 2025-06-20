@@ -140,7 +140,7 @@ function EtherealSection({
   scrollY: any
   isVisible: boolean
 }) {
-  const sectionTop = index * window.innerHeight
+  const sectionTop = index * (typeof window !== "undefined" ? window.innerHeight : 1)
 
   return (
     <section className="ethereal-section" data-index={index}>
@@ -148,7 +148,7 @@ function EtherealSection({
       <animated.div
         style={{
           transform: scrollY.to((y: number) => {
-            const progress = (y - sectionTop) / window.innerHeight
+            const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1)
             return `translateY(${progress * 25}px)`
           }),
           // opacity: scrollY.to((y) => {
@@ -176,7 +176,7 @@ function EtherealSection({
           <animated.div
             style={{
               transform: scrollY.to((y: number) => {
-                const progress = (y - sectionTop) / window.innerHeight
+                const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1)
                 const float = Math.sin(progress * Math.PI) * 8
                 return `translateY(${progress * 15 + float}px)`
               }),
@@ -202,7 +202,7 @@ function EtherealSection({
           <animated.div
             style={{
               transform: scrollY.to((y: number) => {
-                const progress = (y - sectionTop) / window.innerHeight
+                const progress = (y - sectionTop) / (typeof window !== "undefined" ? window.innerHeight : 1)
                 const float = Math.cos(progress * Math.PI) * 6
                 return `translateY(${progress * -10 + float}px)`
               }),
